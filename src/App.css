@@ -10,3 +10,28 @@
   justify-content: center;
   align-items: center;
 }
+
+.board {
+  width: calc(64px*8);
+  height: calc(64px*8);
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.cell {
+  height: 64px;
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black {
+  background-color: rgb(135, 170, 180);
+}
+
+.white {
+  background-color: rgb(216, 216, 216);
+}
