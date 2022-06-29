@@ -16,6 +16,41 @@ export class King extends Figure {
     if (!super.canMove(target)) {
       return false;
     }
-    return true;
+    const isAbleToMoveVertical =
+      target.y === this.cell.y + 1 || target.y === this.cell.y - 1;
+    const isAbleToMoveHorizontal =
+      target.x === this.cell.x + 1 || target.x === this.cell.x - 1;
+    if (this.cell.isEmptyVertical(target)) {
+      if (
+        isAbleToMoveVertical &&
+        target.x === this.cell.x &&
+        (this.cell.board.getCell(target.x, target.y).isEmpty() ||
+          this.cell.isEnemy(target))
+      ) {
+        return true;
+      }
+    }
+
+    if (this.cell.isEmptyHorizontal(target)) {
+      if (
+        target.y === this.cell.y &&
+        isAbleToMoveHorizontal &&
+        (this.cell.board.getCell(target.x, target.y).isEmpty() ||
+          this.cell.isEnemy(target))
+      ) {
+        return true;
+      }
+    }
+    if (this.cell.isEmptyDiagonal(target)) {
+      if (
+        isAbleToMoveVertical &&
+        isAbleToMoveHorizontal &&
+        (this.cell.board.getCell(target.x, target.y).isEmpty() ||
+          this.cell.isEnemy(target))
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 }
